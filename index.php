@@ -43,6 +43,17 @@ $result = $conn->query($sql);
     }
 }
 
+if(isset($_POST['delete'])){
+    $delete_id= $_POST['delete_one'];
+    $delOneQuery = "DELETE FROM list WHERE id='$delete_id'";
+    if (mysqli_query($conn, $delOneQuery)) {
+        header('Location: index.php?');
+        exit;
+    } else {
+        echo "Error deleting tasks: " . mysqli_error($conn);
+    }
+}
+
 if(isset($_GET['added_task'])){
     echo "Task added successfully";
 }
@@ -59,7 +70,8 @@ elseif (isset($_GET['deleted_task'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>dolist document</title>
+  <title>Todolist document</title>
+  <link rel ="stylesheet" href ="style.css">
 </head>
 <body>
     <h1>This is my To Do list</h1>
@@ -68,34 +80,44 @@ elseif (isset($_GET['deleted_task'])) {
         <input type="text" name="task" class="input_task">
         <button type="submit" class="add-btn" name = "submit">Add New Task</button>
     </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Task description</th>
-                <th>Status</th>
-            </tr>
-            
-        </thead>
-        
-            <tbody>
-            <?php
-            $i=1;
-            while ($row = mysqli_fetch_assoc($task_read)) {
-                echo "<tr>";
-                echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['task'] . "</td>";
-                echo "<td>" . $row['status'] . "</td>"; 
-                echo "</tr>";
-                $i++;
-            }
-            ?>
-            
-            
-        </tbody>
-        
+    <div id="options">
 
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Task description</th>
+                    <th>Status</th>
+                    <th >Edit/Delete</th>
+                </tr>
+                
+            </thead>
+            
+                <tbody>
+                <?php
+                $i=1;
+                while ($row = mysqli_fetch_assoc($task_read)) {
+                    echo "<tr>";
+                    echo "<td>" . $i . "</td>";
+                    echo "<td>" . $row['task'] . "</td>";
+                    echo "<td>" . $row['status'] . "</td>";
+                    echo "<td id='del_btn'>";
+                    echo "<form method='POST' action='index.php'>";
+                    echo "<input type='hidden' name='delete_one' value='" . $row['id']  . "'>";
+                    echo "<button type='submit' class='delete-btn' name='delete'>Delete</button>";
+                    echo "</form>"; 
+                    echo "</td>";
+                    echo "</tr>";
+                    $i++;
+                }
+                ?>
+                
+                
+            </tbody>
+            
+
+        </table>
+    </div>
     <br>
     <br>
     <form method="POST" action="index.php">
