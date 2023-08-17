@@ -62,7 +62,7 @@ elseif (isset($_GET['deleted_task'])) {
   <title>dolist document</title>
 </head>
 <body>
-    <h1>This is my todo list</h1>
+    <h1>This is my To Do list</h1>
 
     <form method="POST" action="index.php">
         <input type="text" name="task" class="input_task">
