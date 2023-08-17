@@ -1,0 +1,30 @@
+/*#options{
+    width:100%;
+    
+    
+}*/
+.input_task{
+    width: 400px;
+}
+table,th,td {
+
+    width:60%;
+    margin-top: 30px;
+    border-collapse: collapse; 
+    border: 1px solid;
+
+
+}
+th,td {
+
+    border: 1px solid;
+    width:15%;
+    
+
+}
+
+#del_btn{
+    text-align: center;
+    vertical-align: middle;
+}
+
