@@ -17,6 +17,7 @@ $result = $conn->query($sql);
 
  $db= mysqli_connect()*/
 
+ //insert new records (new to do's)
  if (isset($_POST['submit'])) {
     $desc = $_POST['task'];
     $status= "In progress";
@@ -30,7 +31,7 @@ $result = $conn->query($sql);
         echo "Error occured in adding data: " . mysqli_error($conn);
     }
 }
-
+// delete all to do's
   $task_read = mysqli_query($conn, "SELECT * FROM list");
 
   if (isset($_POST['delete_all'])) {
@@ -43,6 +44,7 @@ $result = $conn->query($sql);
     }
 }
 
+//delete specified to do
 if(isset($_POST['delete'])){
     $delete_id= $_POST['delete_one'];
     $delOneQuery = "DELETE FROM list WHERE id='$delete_id'";
@@ -54,9 +56,11 @@ if(isset($_POST['delete'])){
     }
 }
 
+//show message when new record is added
 if(isset($_GET['added_task'])){
     echo "Task added successfully";
 }
+//show when list is deleted
 elseif (isset($_GET['deleted_task'])) {
     echo "All tasks deleted successfully";
 }
