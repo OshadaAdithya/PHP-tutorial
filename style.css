@@ -2,11 +2,11 @@
     width:100%;
     
     
-}*/
+}
 .input_task{
     width: 400px;
-}
-table,th,td {
+}*/
+/*table,th,td {
 
     width:60%;
     margin-top: 30px;
@@ -14,13 +14,17 @@ table,th,td {
     border: 1px solid;
 
 
-}
-th,td {
+}*/
+/*th,td {
 
     border: 1px solid;
     width:15%;
     
 
+}*/
+
+#task{
+    width: 30%;
 }
 
 #del_btn{
